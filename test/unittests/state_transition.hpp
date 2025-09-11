@@ -1,18 +1,18 @@
-// zvmone: Fast Zond Virtual Machine implementation
+// qrvmone: Fast Quantum Resistant Virtual Machine implementation
 // Copyright 2023 The evmone Authors.
 // SPDX-License-Identifier: Apache-2.0
 #pragma once
 
 #include <gtest/gtest.h>
 #include <test/state/host.hpp>
-#include <zvmone/zvmone.h>
+#include <qrvmone/qrvmone.h>
 
 #pragma GCC diagnostic ignored "-Wmissing-field-initializers"
 
-namespace zvmone::test
+namespace qrvmone::test
 {
-using namespace zvmone;
-using namespace zvmone::state;
+using namespace qrvmone;
+using namespace qrvmone::state;
 
 /// Fixture to defining test cases in form similar to JSON State Tests.
 ///
@@ -23,14 +23,14 @@ class state_transition : public testing::Test
 protected:
     /// The default sender address of the test transaction.
     /// Private key: 0x2b1263d2b.
-    static constexpr auto Sender = "Ze100713FC15400D1e94096a545879E7c6407001e"_address;
+    static constexpr auto Sender = "Qe100713FC15400D1e94096a545879E7c6407001e"_address;
 
     /// The default destination address of the test transaction.
-    static constexpr auto To = "Zc0de"_address;
+    static constexpr auto To = "Qc0de"_address;
 
-    static constexpr auto Coinbase = "Zc014bace"_address;
+    static constexpr auto Coinbase = "Qc014bace"_address;
 
-    static inline zvmc::VM vm{zvmc_create_zvmone()};
+    static inline qrvmc::VM vm{qrvmc_create_qrvmone()};
 
     struct ExpectedAccount
     {
@@ -43,14 +43,14 @@ protected:
 
     struct Expectation
     {
-        zvmc_status_code status = ZVMC_SUCCESS;
+        qrvmc_status_code status = QRVMC_SUCCESS;
         std::optional<int64_t> gas_used;
 
         std::unordered_map<address, ExpectedAccount> post;
     };
 
 
-    zvmc_revision rev = ZVMC_SHANGHAI;
+    qrvmc_revision rev = QRVMC_SHANGHAI;
     BlockInfo block{
         .gas_limit = 1'000'000,
         .coinbase = Coinbase,
@@ -71,4 +71,4 @@ protected:
     void TearDown() override;
 };
 
-}  // namespace zvmone::test
+}  // namespace qrvmone::test

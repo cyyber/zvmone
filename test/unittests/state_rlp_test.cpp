@@ -1,4 +1,4 @@
-// zvmone: Fast Zond Virtual Machine implementation
+// qrvmone: Fast Quantum Resistant Virtual Machine implementation
 // Copyright 2022 The evmone Authors.
 // SPDX-License-Identifier: Apache-2.0
 
@@ -9,8 +9,8 @@
 #include <test/utils/utils.hpp>
 #include <bit>
 
-using namespace zvmone;
-using namespace zvmc::literals;
+using namespace qrvmone;
+using namespace qrvmc::literals;
 using namespace intx;
 using namespace testing;
 
@@ -202,13 +202,13 @@ TEST(state_rlp, tx_to_rlp_eip1559)
 {
     state::Transaction tx{};
 
-    tx.kind = zvmone::state::Transaction::Kind::eip1559;
+    tx.kind = qrvmone::state::Transaction::Kind::eip1559;
     tx.data = ""_b;
     tx.gas_limit = 30000;
     tx.max_gas_price = 14237787676;
     tx.max_priority_gas_price = 0;
-    tx.sender = "Z20a1a68e6818a1142f85671db01ef7226debf822"_address;
-    tx.to = "Z535b918f3724001fd6fb52fcc6cbc220592990a3"_address;
+    tx.sender = "Q20a1a68e6818a1142f85671db01ef7226debf822"_address;
+    tx.to = "Q535b918f3724001fd6fb52fcc6cbc220592990a3"_address;
     tx.value = 73360267083380739_u256;
     tx.access_list = {};
     tx.nonce = 132949;
@@ -229,7 +229,7 @@ TEST(state_rlp, tx_to_rlp_eip1559)
 TEST(state_rlp, tx_to_rlp_eip1559_with_data)
 {
     state::Transaction tx{};
-    tx.kind = zvmone::state::Transaction::Kind::eip1559;
+    tx.kind = qrvmone::state::Transaction::Kind::eip1559;
     tx.data =
         "095ea7b3"
         "0000000000000000000000001111111254eeb25477b68fb85ed929f73a960582"
@@ -237,8 +237,8 @@ TEST(state_rlp, tx_to_rlp_eip1559_with_data)
     tx.gas_limit = 53319;
     tx.max_gas_price = 14358031378;
     tx.max_priority_gas_price = 576312105;
-    tx.sender = "Z20a1a68e6818a1142f85671db01ef7226debf822"_address;
-    tx.to = "Zc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"_address;
+    tx.sender = "Q20a1a68e6818a1142f85671db01ef7226debf822"_address;
+    tx.to = "Qc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"_address;
     tx.value = 0;
     tx.access_list = {};
     tx.nonce = 47;
@@ -259,15 +259,15 @@ TEST(state_rlp, tx_to_rlp_eip1559_with_data)
 TEST(state_rlp, tx_to_rlp_eip1559_with_non_empty_access_list)
 {
     state::Transaction tx{};
-    tx.kind = zvmone::state::Transaction::Kind::eip1559;
+    tx.kind = qrvmone::state::Transaction::Kind::eip1559;
     tx.data = "00"_hex;
     tx.gas_limit = 0x3d0900;
     tx.max_gas_price = 0x7d0;
     tx.max_priority_gas_price = 0xa;
-    tx.sender = "Z20a1a68e6818a1142f85671db01ef7226debf822"_address;
-    tx.to = "Zcccccccccccccccccccccccccccccccccccccccc"_address;
+    tx.sender = "Q20a1a68e6818a1142f85671db01ef7226debf822"_address;
+    tx.to = "Qcccccccccccccccccccccccccccccccccccccccc"_address;
     tx.value = 0;
-    tx.access_list = {{"Zcccccccccccccccccccccccccccccccccccccccc"_address,
+    tx.access_list = {{"Qcccccccccccccccccccccccccccccccccccccccc"_address,
         {0x0000000000000000000000000000000000000000000000000000000000000000_bytes32,
             0x0000000000000000000000000000000000000000000000000000000000000001_bytes32}}};
     tx.nonce = 1;

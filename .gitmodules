@@ -1,4 +1,4 @@
-[submodule "zvmc"]
-	path = zvmc
-	# TODO(now.youtrack.cloud/issue/TE-11)
-	url = https://github.com/rgeraldes24/zvmc
+[submodule "qrvmc"]
+	path = qrvmc
+	url = https://github.com/rgeraldes24/qrvmc
+	branch = feature/qrl-naming

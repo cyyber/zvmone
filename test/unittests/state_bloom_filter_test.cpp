@@ -1,4 +1,4 @@
-// zvmone: Fast Zond Virtual Machine implementation
+// qrvmone: Fast Quantum Resistant Virtual Machine implementation
 // Copyright 2023 The evmone Authors.
 // SPDX-License-Identifier: Apache-2.0
 
@@ -6,11 +6,11 @@
 #include <gtest/gtest.h>
 #include <test/state/bloom_filter.hpp>
 #include <test/state/state.hpp>
-#include <zvmc/zvmc.hpp>
+#include <qrvmc/qrvmc.hpp>
 #include <array>
 
-using namespace zvmc::literals;
-using namespace zvmone::state;
+using namespace qrvmc::literals;
+using namespace qrvmone::state;
 
 namespace
 {
@@ -83,7 +83,7 @@ TEST(state_bloom_filter, combine_blooms_simgle_transaction)
         "000000000000000000000000000004000000000000000020000000000000000000000000060000000000000000"
         "00000000000000000000000000000000000000000000010000000000000000"_hex;
 
-    const Log log{"Z6e397a41f9fa7362e2c726bff032b4cd3fbc0b3c"_address, {},
+    const Log log{"Q6e397a41f9fa7362e2c726bff032b4cd3fbc0b3c"_address, {},
         {0x01a1249f2caa0445b8391e02413d26f0d409dabe5330cd1d04d3d0801fc42db3_bytes32,
             0x497f3c9f61479c1cfa53f0373d39d2bf4e5f73f71411da62f1d6b85c03a60735_bytes32}};
 
