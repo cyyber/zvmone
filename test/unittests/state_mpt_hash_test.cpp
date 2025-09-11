@@ -29,7 +29,7 @@ TEST(state_mpt_hash, single_account_v1)
 
     Account acc;
     acc.balance = 1_u256;
-    const std::unordered_map<address, Account> accounts{{"Z02"_address, acc}};
+    const std::unordered_map<address, Account> accounts{{"Q02"_address, acc}};
     EXPECT_EQ(mpt_hash(accounts), expected);
 }
 
@@ -38,7 +38,7 @@ TEST(state_mpt_hash, two_accounts)
     std::unordered_map<address, Account> accounts;
     EXPECT_EQ(mpt_hash(accounts), emptyMPTHash);
 
-    accounts["Z00"_address] = Account{};
+    accounts["Q00"_address] = Account{};
     EXPECT_EQ(mpt_hash(accounts),
         0x0ce23f3c809de377b008a4a3ee94a0834aac8bec1f86e28ffe4fdb5a15b0c785_bytes32);
 
@@ -48,7 +48,7 @@ TEST(state_mpt_hash, two_accounts)
     acc2.code = {0x00};
     acc2.storage[0x01_bytes32] = {0xfe_bytes32};
     acc2.storage[0x02_bytes32] = {0xfd_bytes32};
-    accounts["Z01"_address] = acc2;
+    accounts["Q01"_address] = acc2;
     EXPECT_EQ(mpt_hash(accounts),
         0xd3e845156fca75de99712281581304fbde104c0fc5a102b09288c07cdde0b666_bytes32);
 }
@@ -59,7 +59,7 @@ TEST(state_mpt_hash, deleted_storage)
     acc.storage[0x01_bytes32] = {};
     acc.storage[0x02_bytes32] = {0xfd_bytes32};
     acc.storage[0x03_bytes32] = {};
-    const std::unordered_map<address, Account> accounts{{"Z07"_address, acc}};
+    const std::unordered_map<address, Account> accounts{{"Q07"_address, acc}};
     EXPECT_EQ(mpt_hash(accounts),
         0x4e7338c16731491e0fb5d1623f5265c17699c970c816bab71d4d717f6071414d_bytes32);
 }

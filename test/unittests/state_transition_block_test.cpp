@@ -9,7 +9,7 @@ using namespace qrvmone::test;
 
 TEST_F(state_transition, block_apply_withdrawal)
 {
-    static constexpr auto withdrawal_address = "Z8888"_address;
+    static constexpr auto withdrawal_address = "Q8888"_address;
 
     block.withdrawals = {{withdrawal_address, 3}};
     tx.to = To;

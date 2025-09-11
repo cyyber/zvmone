@@ -26,9 +26,9 @@ protected:
     static constexpr auto Sender = "Qe100713FC15400D1e94096a545879E7c6407001e"_address;
 
     /// The default destination address of the test transaction.
-    static constexpr auto To = "Zc0de"_address;
+    static constexpr auto To = "Qc0de"_address;
 
-    static constexpr auto Coinbase = "Zc014bace"_address;
+    static constexpr auto Coinbase = "Qc014bace"_address;
 
     static inline qrvmc::VM vm{qrvmc_create_qrvmone()};
 

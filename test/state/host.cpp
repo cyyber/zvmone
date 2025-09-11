@@ -253,7 +253,7 @@ qrvmc::Result Host::call(const qrvmc_message& orig_msg) noexcept
 
     if (result.status_code != QRVMC_SUCCESS)
     {
-        static constexpr auto addr_03 = "Z03"_address;
+        static constexpr auto addr_03 = "Q03"_address;
         auto* const acc_03 = m_state.find(addr_03);
         const auto is_03_touched = acc_03 != nullptr && acc_03->erasable;
 
@@ -309,7 +309,7 @@ qrvmc_access_status Host::access_account(const address& addr) noexcept
     const auto status = std::exchange(acc.access_status, QRVMC_ACCESS_WARM);
 
     // Overwrite status for precompiled contracts: they are always warm.
-    if (status == QRVMC_ACCESS_COLD && addr >= "Z01"_address && addr <= "Z09"_address)
+    if (status == QRVMC_ACCESS_COLD && addr >= "Q01"_address && addr <= "Q09"_address)
         return QRVMC_ACCESS_WARM;
 
     return status;
