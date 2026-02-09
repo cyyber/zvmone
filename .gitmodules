@@ -1,4 +1,3 @@
 [submodule "qrvmc"]
 	path = qrvmc
 	url = https://github.com/rgeraldes24/qrvmc
-	branch = cleanup/precompile-2
