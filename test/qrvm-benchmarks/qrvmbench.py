@@ -14,7 +14,7 @@ ORIGIN_SEED = '0x41f6e321b31e72173f8ff2e292359e1862f24fba42fe6f97efaf641980eff29
 COINBASE = ORIGIN
 RANDOM = '0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b' # hash
 
-NETWORK = 'Shanghai'
+NETWORK = 'Zond'
 
 
 # Decode DRY text.

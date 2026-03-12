@@ -267,7 +267,7 @@ QRVMC_EXPORT const OpTable& get_op_table(qrvmc_revision rev) noexcept
 {
     static constexpr auto op_tables = []() noexcept {
         std::array<OpTable, QRVMC_MAX_REVISION + 1> tables{};
-        for (size_t r = QRVMC_SHANGHAI; r <= QRVMC_MAX_REVISION; ++r)
+        for (size_t r = QRVMC_ZOND; r <= QRVMC_MAX_REVISION; ++r)
         {
             auto& table = tables[r];
             for (size_t i = 0; i < table.size(); ++i)

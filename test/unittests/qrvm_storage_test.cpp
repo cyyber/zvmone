@@ -30,7 +30,7 @@ TEST_P(qrvm, sstore_pop_stack)
 
 TEST_P(qrvm, sload_cost)
 {
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
     execute(2106, sload(dup1(0)));
     EXPECT_GAS_USED(QRVMC_SUCCESS, 2106);
     EXPECT_EQ(host.accounts[msg.recipient].storage.size(), 1);
@@ -67,7 +67,7 @@ TEST_P(qrvm, sstore_cost)
 
     constexpr auto v1 = 0x01_bytes32;
 
-    for (auto r : {QRVMC_SHANGHAI})
+    for (auto r : {QRVMC_ZOND})
     {
         rev = r;
 
@@ -175,9 +175,9 @@ TEST_P(qrvm, sstore_cost_net_gas_metering)
     };
 
     std::array<CostConstants, QRVMC_MAX_REVISION + 1> cost_constants{};
-    cost_constants[QRVMC_SHANGHAI] = {100, 20000, 2900, 4800};
+    cost_constants[QRVMC_ZOND] = {100, 20000, 2900, 4800};
 
-    for (const auto r : {QRVMC_SHANGHAI})
+    for (const auto r : {QRVMC_ZOND})
     {
         rev = r;
         const auto& c = cost_constants.at(static_cast<size_t>(r));
@@ -205,7 +205,7 @@ TEST_P(qrvm, sstore_below_stipend)
 {
     const auto code = sstore(0, 0);
 
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
     execute(2306, code);
     EXPECT_EQ(result.status_code, QRVMC_OUT_OF_GAS);
 

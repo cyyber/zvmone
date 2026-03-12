@@ -24,7 +24,7 @@ constexpr int unspecified = -1000000;
 
 constexpr int get_revision_defined_in(size_t op) noexcept
 {
-    for (size_t r = QRVMC_SHANGHAI; r <= QRVMC_MAX_REVISION; ++r)
+    for (size_t r = QRVMC_ZOND; r <= QRVMC_MAX_REVISION; ++r)
     {
         if (instr::gas_costs[r][op] != instr::undefined)
             return static_cast<int>(r);
@@ -86,7 +86,7 @@ static_assert(instr::has_const_gas_cost(OP_PUSH1));
 
 TEST(instructions, compare_with_qrvmc_instruction_tables)
 {
-    for (int r = QRVMC_SHANGHAI; r <= QRVMC_MAX_REVISION; ++r)
+    for (int r = QRVMC_ZOND; r <= QRVMC_MAX_REVISION; ++r)
     {
         const auto rev = static_cast<qrvmc_revision>(r);
         const auto& instr_tbl = instr::gas_costs[rev];
@@ -116,7 +116,7 @@ TEST(instructions, compare_with_qrvmc_instruction_tables)
 
 TEST(instructions, compare_undefined_instructions)
 {
-    for (int r = QRVMC_SHANGHAI; r <= QRVMC_MAX_REVISION; ++r)
+    for (int r = QRVMC_ZOND; r <= QRVMC_MAX_REVISION; ++r)
     {
         const auto rev = static_cast<qrvmc_revision>(r);
         const auto& instr_tbl = instr::gas_costs[rev];

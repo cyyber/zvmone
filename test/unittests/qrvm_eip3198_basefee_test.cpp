@@ -13,7 +13,7 @@ using qrvmone::test::qrvm;
 TEST_P(qrvm, basefee_nominal_case)
 {
     // https://eips.ethereum.org/EIPS/eip-3198#nominal-case
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
     host.tx_context.block_base_fee = qrvmc::bytes32{7};
 
     execute(bytecode{} + OP_BASEFEE + OP_STOP);

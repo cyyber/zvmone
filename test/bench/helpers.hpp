@@ -16,7 +16,7 @@ namespace qrvmone::test
 {
 extern std::map<std::string_view, qrvmc::VM> registered_vms;
 
-constexpr auto default_revision = QRVMC_SHANGHAI;
+constexpr auto default_revision = QRVMC_ZOND;
 constexpr auto default_gas_limit = std::numeric_limits<int64_t>::max();
 
 

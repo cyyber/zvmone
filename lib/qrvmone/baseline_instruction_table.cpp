@@ -11,7 +11,7 @@ namespace
 {
 constexpr auto common_cost_tables = []() noexcept {
     std::array<CostTable, QRVMC_MAX_REVISION + 1> tables{};
-    for (size_t r = QRVMC_SHANGHAI; r <= QRVMC_MAX_REVISION; ++r)
+    for (size_t r = QRVMC_ZOND; r <= QRVMC_MAX_REVISION; ++r)
     {
         auto& table = tables[r];
         for (size_t i = 0; i < table.size(); ++i)

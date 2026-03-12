@@ -119,7 +119,7 @@ TEST_P(qrvm, swapsn_jumpdest)
     const auto swapsn = "b3";
     const auto code = push(4) + OP_JUMP + swapsn + OP_JUMPDEST + push(0) + ret_top();
 
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
     execute(code);
     EXPECT_STATUS(QRVMC_SUCCESS);
     EXPECT_GAS_USED(QRVMC_SUCCESS, 30);
@@ -137,7 +137,7 @@ TEST_P(qrvm, swapsn_push)
     const auto swapsn = "b3";
     const auto code = push(5) + OP_JUMP + swapsn + push(uint8_t{OP_JUMPDEST}) + push(0) + ret_top();
 
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
     execute(code);
     EXPECT_STATUS(QRVMC_BAD_JUMP_DESTINATION);
 
@@ -331,7 +331,7 @@ TEST_P(qrvm, signextend)
 
 TEST_P(qrvm, signextend_31)
 {
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
 
     execute(bytecode{"61010160000360081c601e0b60005260206000f3"});
     EXPECT_GAS_USED(QRVMC_SUCCESS, 38);
@@ -542,7 +542,7 @@ TEST_P(qrvm, return_empty_buffer_at_high_offset)
 TEST_P(qrvm, shl)
 {
     const bytecode code = "600560011b6000526001601ff3";
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
     execute(code);
     EXPECT_EQ(gas_used, 24);
     EXPECT_EQ(result.status_code, QRVMC_SUCCESS);
@@ -553,7 +553,7 @@ TEST_P(qrvm, shl)
 TEST_P(qrvm, shr)
 {
     const bytecode code = "600560011c6000526001601ff3";
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
     execute(code);
     EXPECT_EQ(gas_used, 24);
     EXPECT_EQ(result.status_code, QRVMC_SUCCESS);
@@ -564,7 +564,7 @@ TEST_P(qrvm, shr)
 TEST_P(qrvm, sar)
 {
     const bytecode code = "600160000360021d60005260016000f3";
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
     execute(code);
     EXPECT_EQ(gas_used, 30);
     EXPECT_EQ(result.status_code, QRVMC_SUCCESS);
@@ -575,7 +575,7 @@ TEST_P(qrvm, sar)
 TEST_P(qrvm, sar_01)
 {
     const bytecode code = "600060011d60005260016000f3";
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
     execute(code);
     EXPECT_EQ(gas_used, 24);
     EXPECT_EQ(result.status_code, QRVMC_SUCCESS);
@@ -585,7 +585,7 @@ TEST_P(qrvm, sar_01)
 
 TEST_P(qrvm, shift_overflow)
 {
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
     for (auto op : {OP_SHL, OP_SHR, OP_SAR})
     {
         execute(not_(0) + 0x100 + op + ret_top());
@@ -615,7 +615,7 @@ TEST_P(qrvm, undefined_instructions)
 
 TEST_P(qrvm, undefined_instruction_analysis_overflow)
 {
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
 
     auto undefined_opcode = static_cast<Opcode>(0x0c);
     auto code = bytecode{undefined_opcode};
@@ -658,7 +658,7 @@ TEST_P(qrvm, staticmode)
 {
     auto code_prefix = 1 + 6 * OP_DUP1;
 
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
     for (auto op :
         {OP_SSTORE, OP_LOG0, OP_LOG1, OP_LOG2, OP_LOG3, OP_LOG4, OP_CALL, OP_CREATE, OP_CREATE2})
     {

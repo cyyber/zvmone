@@ -174,7 +174,7 @@ TEST_P(qrvm, memory_access)
 {
     // This test checks if instructions accessing memory properly respond with out-of-gas
     // error for combinations of memory offset and memory size arguments.
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
 
     for (const auto& p : memory_access_test_cases)
     {

@@ -95,7 +95,7 @@ TEST_P(qrvm, qrvmone_block_gas_cost_overflow_balance)
 {
     // Here we build single-block bytecode with as many BALANCE instructions as possible.
 
-    rev = QRVMC_SHANGHAI;  // Here BALANCE costs 100 or 2600; depends on whether the account is warm
+    rev = QRVMC_ZOND;  // Here BALANCE costs 100 or 2600; depends on whether the account is warm
                           // or not.
 
     constexpr auto gas_max = std::numeric_limits<uint32_t>::max();

@@ -50,7 +50,7 @@ protected:
     };
 
 
-    qrvmc_revision rev = QRVMC_SHANGHAI;
+    qrvmc_revision rev = QRVMC_ZOND;
     BlockInfo block{
         .gas_limit = 1'000'000,
         .coinbase = Coinbase,

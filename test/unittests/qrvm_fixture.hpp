@@ -38,9 +38,9 @@ protected:
     /// The VM handle.
     qrvmc::VM& vm;
 
-    /// The QRVM revision for unit test execution. Shanghai by default.
+    /// The QRVM revision for unit test execution. Zond by default.
     /// TODO: Add alias qrvmc::revision.
-    qrvmc_revision rev = QRVMC_SHANGHAI;
+    qrvmc_revision rev = QRVMC_ZOND;
 
     /// The message to be executed by a unit test (with execute() method).
     /// TODO: Add qrvmc::message with default constructor.
