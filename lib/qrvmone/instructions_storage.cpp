@@ -24,7 +24,7 @@ constexpr auto storage_cost_spec = []() noexcept {
     std::array<StorageCostSpec, QRVMC_MAX_REVISION + 1> tbl{};
 
     // Net cost schedule.
-    tbl[QRVMC_SHANGHAI] = {
+    tbl[QRVMC_ZOND] = {
         instr::warm_storage_read_cost, 20000, 5000 - instr::cold_sload_cost, 4800};
     return tbl;
 }();
@@ -42,7 +42,7 @@ constexpr auto sstore_costs = []() noexcept {
         QRVMC_MAX_REVISION + 1>
         tbl{};
 
-    for (size_t rev = QRVMC_SHANGHAI; rev <= QRVMC_MAX_REVISION; ++rev)
+    for (size_t rev = QRVMC_ZOND; rev <= QRVMC_MAX_REVISION; ++rev)
     {
         auto& e = tbl[rev];
         const auto c = storage_cost_spec[rev];

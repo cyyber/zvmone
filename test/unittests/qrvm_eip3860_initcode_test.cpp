@@ -18,13 +18,13 @@ TEST_P(qrvm, create_initcode_limit)
     for (const auto& c : {create().input(0, calldataload(0)) + ret_top(),
              create2().input(0, calldataload(0)) + ret_top()})
     {
-        for (const auto r : {QRVMC_SHANGHAI})
+        for (const auto r : {QRVMC_ZOND})
         {
             rev = r;
             for (const auto s : {initcode_size_limit, initcode_size_limit + 1})
             {
                 execute(c, qrvmc::uint256be{s});
-                if (rev >= QRVMC_SHANGHAI && s > initcode_size_limit)
+                if (rev >= QRVMC_ZOND && s > initcode_size_limit)
                 {
                     EXPECT_STATUS(QRVMC_OUT_OF_GAS);
                 }
@@ -39,7 +39,7 @@ TEST_P(qrvm, create_initcode_limit)
 
 TEST_P(qrvm, create_initcode_gas_cost)
 {
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
     const auto code = create().input(0, calldataload(0));
     execute(44300, code, qrvmc::uint256be{initcode_size_limit});
     EXPECT_GAS_USED(QRVMC_SUCCESS, 44300);
@@ -49,7 +49,7 @@ TEST_P(qrvm, create_initcode_gas_cost)
 
 TEST_P(qrvm, create2_initcode_gas_cost)
 {
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
     const auto code = create2().input(0, calldataload(0));
     execute(53519, code, qrvmc::uint256be{initcode_size_limit});
     EXPECT_GAS_USED(QRVMC_SUCCESS, 53519);

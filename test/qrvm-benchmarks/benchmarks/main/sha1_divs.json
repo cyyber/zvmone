@@ -24,7 +24,7 @@
             "withdrawals" : []
         },
         "post" : {
-            "Shanghai" : [
+            "Zond" : [
                 {
                     "hash" : "0x9c45903f72ff5bf745d2fafe635b252e6fda4d17d11959254b5bf4cfddc23a8f",
                     "indexes" : {

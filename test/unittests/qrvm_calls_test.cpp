@@ -59,7 +59,7 @@ TEST_P(qrvm, delegatecall_static)
 
 TEST_P(qrvm, delegatecall_oog_depth_limit)
 {
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
     msg.depth = 1024;
     const auto code = bytecode{} + delegatecall(0).gas(16) + ret_top();
 
@@ -100,7 +100,7 @@ TEST_P(qrvm, create)
 TEST_P(qrvm, create_gas)
 {
     size_t c = 0;
-    for (auto r : {QRVMC_SHANGHAI})
+    for (auto r : {QRVMC_ZOND})
     {
         ++c;
         rev = r;
@@ -114,7 +114,7 @@ TEST_P(qrvm, create_gas)
 
 TEST_P(qrvm, create2)
 {
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
     auto& account = host.accounts[msg.recipient];
     account.set_balance(1);
 
@@ -140,7 +140,7 @@ TEST_P(qrvm, create2)
 
 TEST_P(qrvm, create2_salt_cost)
 {
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
     const auto code = create2().input(0, 0x20);
 
     execute(34128, code);
@@ -157,7 +157,7 @@ TEST_P(qrvm, create2_salt_cost)
 
 TEST_P(qrvm, create_balance_too_low)
 {
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
     host.accounts[msg.recipient].set_balance(1);
     for (auto op : {OP_CREATE, OP_CREATE2})
     {
@@ -173,7 +173,7 @@ TEST_P(qrvm, create_failure)
     host.call_result.create_address = "Q00000000000000000000000000000000000000ce"_address;
     const auto create_address =
         bytes_view{host.call_result.create_address.bytes, sizeof(host.call_result.create_address)};
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
     for (auto op : {OP_CREATE, OP_CREATE2})
     {
         const auto code = push(0) + (3 * OP_DUP1) + op + ret_top();
@@ -269,7 +269,7 @@ TEST_P(qrvm, call_with_value_depth_limit)
 
 TEST_P(qrvm, call_depth_limit)
 {
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
     msg.depth = 1024;
 
     for (auto op : {OP_CALL, OP_DELEGATECALL, OP_STATICCALL, OP_CREATE, OP_CREATE2})
@@ -323,7 +323,7 @@ TEST_P(qrvm, call_output)
 
 TEST_P(qrvm, call_high_gas)
 {
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
     host.accounts["Qaa"_address] = {};
 
     for (auto call_opcode : {OP_CALL, OP_DELEGATECALL})
@@ -362,7 +362,7 @@ TEST_P(qrvm, call_new_account_creation_cost)
         4 * push(0) + calldataload(0) + push(call_dst) + push(0) + OP_CALL + ret_top();
     msg.recipient = msg_dst;
 
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
     host.accounts[msg.recipient].set_balance(0);
     execute(code, "00"_hex);
     EXPECT_GAS_USED(QRVMC_SUCCESS, 2639);
@@ -377,7 +377,7 @@ TEST_P(qrvm, call_new_account_creation_cost)
     host.recorded_account_accesses.clear();
     host.recorded_calls.clear();
 
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
     host.accounts[msg.recipient].set_balance(1);
     execute(code, "0000000000000000000000000000000000000000000000000000000000000001"_hex);
     EXPECT_GAS_USED(QRVMC_SUCCESS, 36639);
@@ -663,7 +663,7 @@ TEST_P(qrvm, returndatacopy_outofrange)
 
 TEST_P(qrvm, call_gas_refund_propagation)
 {
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
     host.accounts[msg.recipient].set_balance(1);
     host.call_result.status_code = QRVMC_SUCCESS;
     host.call_result.gas_refund = 1;
@@ -679,7 +679,7 @@ TEST_P(qrvm, call_gas_refund_propagation)
 
 TEST_P(qrvm, call_gas_refund_aggregation_different_calls)
 {
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
     host.accounts[msg.recipient].set_balance(1);
     host.call_result.status_code = QRVMC_SUCCESS;
     host.call_result.gas_refund = 1;
@@ -693,7 +693,7 @@ TEST_P(qrvm, call_gas_refund_aggregation_different_calls)
 
 TEST_P(qrvm, call_gas_refund_aggregation_same_calls)
 {
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
     host.accounts[msg.recipient].set_balance(2);
     host.call_result.status_code = QRVMC_SUCCESS;
     host.call_result.gas_refund = 1;

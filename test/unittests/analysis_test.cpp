@@ -9,7 +9,7 @@
 
 using namespace qrvmone::advanced;
 
-constexpr auto rev = QRVMC_SHANGHAI;
+constexpr auto rev = QRVMC_ZOND;
 const auto& op_tbl = get_op_table(rev);
 
 TEST(analysis, example1)

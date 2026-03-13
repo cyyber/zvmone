@@ -205,8 +205,8 @@ state::State from_json<state::State>(const json::json& j)
 
 qrvmc_revision to_rev(std::string_view s)
 {
-    if (s == "Shanghai")
-        return QRVMC_SHANGHAI;
+    if (s == "Zond")
+        return QRVMC_ZOND;
     throw std::invalid_argument{"unknown revision: " + std::string{s}};
 }
 

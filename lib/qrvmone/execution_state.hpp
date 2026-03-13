@@ -127,7 +127,7 @@ public:
     Memory memory;
     const qrvmc_message* msg = nullptr;
     qrvmc::HostContext host;
-    qrvmc_revision rev = QRVMC_SHANGHAI;
+    qrvmc_revision rev = QRVMC_ZOND;
     bytes return_data;
 
     /// Reference to original QRVM code container.

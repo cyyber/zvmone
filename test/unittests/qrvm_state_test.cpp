@@ -60,7 +60,7 @@ TEST_P(qrvm, codecopy_combinations)
 
 TEST_P(qrvm, tx_context)
 {
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
 
     host.tx_context.block_timestamp = 0xdd;
     host.tx_context.block_number = 0x1100;
@@ -105,7 +105,7 @@ TEST_P(qrvm, balance)
 
 TEST_P(qrvm, account_info_homestead)
 {
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
     host.accounts[msg.recipient].set_balance(1);
     host.accounts[msg.recipient].code = bytes{1};
 
@@ -130,7 +130,7 @@ TEST_P(qrvm, selfbalance)
     // instruction as a result)
     auto code = bytecode{} + push(1) + OP_SELFBALANCE + mstore(0) + ret(32 - 6, 6);
 
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
     execute(code);
     EXPECT_GAS_USED(QRVMC_SUCCESS, 23);
     ASSERT_EQ(result.output_size, 6);
@@ -270,7 +270,7 @@ TEST_P(qrvm, extcodehash)
 
     const auto code = push(0) + OP_EXTCODEHASH + ret_top();
 
-    rev = QRVMC_SHANGHAI;
+    rev = QRVMC_ZOND;
     execute(code);
     EXPECT_EQ(gas_used, 118);
     ASSERT_EQ(result.output_size, 32);
